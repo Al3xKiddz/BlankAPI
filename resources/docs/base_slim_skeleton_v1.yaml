@@ -1,0 +1,29 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: LibAPI
+  description: API de service web
+  
+servers: 
+  - url: http://localhost/Blank
+paths:
+  /:
+    get:
+      tags:
+        - Livre
+      summary: Message de bienvenue
+      responses:
+        '200': 
+          description: 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                example:
+                    success: true
+                    message : 'Hello world!'
