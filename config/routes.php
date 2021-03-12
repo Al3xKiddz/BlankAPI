@@ -16,6 +16,8 @@ return function (App $app) {
 
     $app->get('/read', \App\Action\LivreReadAction::class);
 
+    $app->get('/read1', \App\Action\LivreRead1Action::class);
+
     $app->patch('/update', \App\Action\LivreUpdateAction::class);
 
     $app->delete('/delete', \App\Action\LivreDeleteAction::class);

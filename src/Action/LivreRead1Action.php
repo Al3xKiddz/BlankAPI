@@ -4,17 +4,17 @@
 namespace App\Action;
 
 
-use App\Domain\User\Service\LivreUpdater;
+use App\Domain\User\Service\LivreReader1;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class LivreUpdateAction
+class LivreRead1Action
 {
-    private $livreUpdater;
+    private $livreReader1;
 
-    public function __construct(LivreUpdater $livreUpdater)
+    public function __construct(LivreReader1 $livreReader1)
     {
-        $this->livreUpdater = $livreUpdater;
+        $this->livreReader1 = $livreReader1;
     }
 
     public function __invoke(
@@ -24,11 +24,13 @@ class LivreUpdateAction
         // Collect input from the HTTP request
         $data = (array)$request->getQueryParams();
         // Invoke the Domain with inputs and retain the result
-        $livreId = $this->livreUpdater->UpdateLivre($data);
+        $livreId = $this->livreReader1->readLivre($data);
 
         // Transform the result into the JSON representation
         $result = [
-            'livre_id' => $livreId
+            'livreId' => $livreId['id'],
+            'titre' => $livreId['titre'],
+            'genreId' => $livreId['genreId']
         ];
 
         // Build the HTTP response
